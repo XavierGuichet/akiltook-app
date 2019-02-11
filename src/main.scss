@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans|Lato');
+$theme-colors: (
+  "primary": #ff9234,
+  "secondary": #35D0BA,
+  "yellow": #FFCD3C,
+  "light": #FEFED5
+);
+
+$font-family-sans-serif: 'Fira Sans', sans-serif;
+$font-family-serif: 'Lato', sans-serif;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+h1 {
+  color: map-get($theme-colors, 'primary');
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+label {
+  color: map-get($theme-colors, 'secondary');
+  font-weight: 700;
+  text-transform: capitalize;
+}

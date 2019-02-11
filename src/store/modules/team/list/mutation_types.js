@@ -1,0 +1,5 @@
+export const RESET = 'TEAM_LIST_RESET'
+export const SET_ITEMS = 'TEAM_LIST_SET_ITEMS'
+export const SET_ERROR = 'TEAM_LIST_SET_ERROR'
+export const SET_VIEW = 'TEAM_LIST_SET_VIEW'
+export const TOGGLE_LOADING = 'TEAM_LIST_TOGGLE_LOADING'

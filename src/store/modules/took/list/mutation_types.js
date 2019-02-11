@@ -1,0 +1,5 @@
+export const RESET = 'TOOK_LIST_RESET'
+export const SET_ITEMS = 'TOOK_LIST_SET_ITEMS'
+export const SET_ERROR = 'TOOK_LIST_SET_ERROR'
+export const SET_VIEW = 'TOOK_LIST_SET_VIEW'
+export const TOGGLE_LOADING = 'TOOK_LIST_TOGGLE_LOADING'
