@@ -50,6 +50,7 @@ Vue.use(require('@websanova/vue-auth'), {
 import account from './store/modules/account/';
 import club from './store/modules/club/';
 import game from './store/modules/game/';
+import mediaobject from './store/modules/mediaobject/';
 import took from './store/modules/took/';
 import team from './store/modules/team/';
 
@@ -57,6 +58,7 @@ export const store = new Vuex.Store({
   modules: {
     account,
     club,
+    mediaobject,
     game,
     team,
     took
