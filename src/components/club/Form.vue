@@ -17,27 +17,24 @@
     </div>
     <div class="form-group">
       <label
-        for="club_logo"
-        class="form-control-label">Logo du club</label>
-      <input
-        id="club_Logo"
-        v-model="item.Logo"
-        :class="['form-control', isInvalid('Logo') ? 'is-invalid' : '']"
-        type="text"
-        placeholder="Reference logo (non modifiable)"
-        @input="handleUpdateField('Logo', $event.target.value)">
+        for="club_Logo"
+        class="form-control-label">Logo</label>
+        <select
+          id="club_Logo"
+          v-model="item.Logo"
+          :class="['form-control', isInvalid('Logo') ? 'is-invalid' : '']"
+          @change="handleUpdateField('Logo', $event.target.value)">
+        >
+          <option v-for="item in mediaobjects"
+          :key="item['@id']"
+          :value="item['@id']"
+          >
+          {{ item['@id'] }}
+          </option>
+        </select>
       <div
-        v-if="isInvalid('Name')"
-        class="invalid-feedback">{{ violations.Name }}</div>
-      <vue-base64-file-upload
-        class=""
-        accept="image/png,image/jpeg"
-        image-class="img-fluid"
-        input-class="form-control"
-        :max-size="customImageMaxSize"
-        @size-exceeded="onSizeExceeded"
-        @file="onFile"
-        @load="onLoad" />
+        v-if="isInvalid('Logo')"
+        class="invalid-feedback">{{ violations.Logo }}</div>
     </div>
     <button
       type="submit"
@@ -46,12 +43,9 @@
 </template>
 
 <script>
-import VueBase64FileUpload from 'vue-base64-file-upload';
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  components: {
-    VueBase64FileUpload
-  },
   props: {
     handleSubmit: {
       type: Function,
@@ -86,6 +80,9 @@ export default {
   },
 
   computed: {
+    ...mapGetters({
+      mediaobjects: 'mediaobject/list/items'
+    }),
     // eslint-disable-next-line
     item () {
       return this.initialValues || this.values
@@ -97,21 +94,16 @@ export default {
   },
 
   methods: {
-    onFile(file) {
-    },
-
-    onLoad(dataUri) {
-      this.values.Logo = dataUri
-      this.handleUpdateField('Logo', dataUri)
-    },
-
-    onSizeExceeded(size) {
-      alert(`Image ${size}Mb size exceeds limits of ${this.customImageMaxSize}Mb!`);
-    },
-
+    ...mapActions({
+      getMediaobjects: 'mediaobject/list/default'
+    }),
     isInvalid (key) {
       return Object.keys(this.violations).length > 0 && this.violations[key]
     }
+  },
+
+  created () {
+    this.getMediaobjects()
   }
 }
 </script>

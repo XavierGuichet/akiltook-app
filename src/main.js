@@ -6,10 +6,15 @@ import VueResource from 'vue-resource';
 import VueAuth from '@websanova/vue-auth'
 import App from './App.vue';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+library.add(faEdit)
+
 Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(VueResource);
-
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 import filter from './filters/'
 // Add routes to VueRouter

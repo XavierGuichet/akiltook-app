@@ -77,9 +77,7 @@
             </td>
             <td>
               <router-link :to="{name: 'AccountUpdate', params: { id: item['@id'] }}">
-                <span
-                  class="fa fa-pencil"
-                  aria-hidden="true" />
+                <font-awesome-icon icon="edit" aria-hidden="true" />
                 <span class="sr-only">Edit</span>
               </router-link>
             </td>

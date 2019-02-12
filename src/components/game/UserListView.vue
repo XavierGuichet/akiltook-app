@@ -23,9 +23,11 @@
       <h5 class="card-title">
         <div class="row">
           <div class="col-6">
+            <img v-bind:src="entrypoint + 'media/' + mediaobject(club(team(item['Team1']).club).Logo).contentUrl" class="img-fluid" /><br/>
             {{ club(team(item['Team1']).club).Name }} {{ team(item['Team1']).Name }}
           </div>
           <div class="col-6">
+            <img v-bind:src="entrypoint + 'media/' + mediaobject(club(team(item['Team2']).club).Logo).contentUrl" class="img-fluid" /><br/>
             {{ club(team(item['Team2']).club).Name }} {{ team(item['Team2']).Name }}
           </div>
         </div>
@@ -72,8 +74,14 @@ import {
   mapActions,
   mapGetters
 } from 'vuex'
+import { ENTRYPOINT } from '../../config/entrypoint';
 
 export default {
+  data () {
+    return {
+      entrypoint: ENTRYPOINT
+    }
+  },
   computed: mapGetters({
     deletedItem: 'game/del/deleted',
     error: 'game/list/error',
@@ -84,6 +92,7 @@ export default {
     club: 'club/list/itemById',
     took: 'took/list/itemById',
     account: 'account/list/itemById',
+    mediaobject: 'mediaobject/list/itemById',
   }),
 
   created() {
@@ -92,6 +101,7 @@ export default {
     this.getClubs()
     this.getTooks()
     this.getAccounts()
+    this.getMediaobjects()
   },
 
   methods: {
@@ -101,7 +111,8 @@ export default {
       getTeams: 'team/list/default',
       getGames: 'game/list/default',
       getClubs: 'club/list/default',
-      getTooks: 'took/list/default'
+      getTooks: 'took/list/default',
+      getMediaobjects: 'mediaobject/list/default'
     })
   },
 }

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1>Team List</h1>
+  <h1>MediaObject List</h1>
 
   <div v-if="isLoading" class="alert alert-info">Loading...</div>
   <div v-if="deletedItem" class="alert alert-success">{{ deletedItem['@id'] }} deleted.</div>
@@ -22,42 +22,24 @@
       <thead>
         <tr>
           <th>Id</th>
-          <th>Name</th>
-          <th>games</th>
-          <th>club</th>
+          <th>Img</th>
           <th colspan="2" />
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in items" :key="item['@id']">
           <td>
-            <router-link v-if="item" :to="{name: 'TeamShow', params: { id: item['@id'] }}">
+            <router-link v-if="item" :to="{name: 'MediaObjectShow', params: { id: item['@id'] }}">
               {{ item['@id'] }}
             </router-link>
           </td>
           <td>
-            <router-link v-if="item" :to="{name: 'TeamShow', params: { id: item['@id'] }}">
-              {{ item['Name'] }}
+            <router-link v-if="item" :to="{name: 'MediaObjectShow', params: { id: item['@id'] }}">
+              <img v-bind:src="entrypoint + 'media/' + item['contentUrl']" />
             </router-link>
           </td>
           <td>
-            <router-link v-if="item" :to="{name: 'TeamShow', params: { id: item['@id'] }}">
-              {{ item['games'] }}
-            </router-link>
-          </td>
-          <td>
-            <router-link v-if="item" :to="{name: 'TeamShow', params: { id: item['@id'] }}">
-              {{ item['club'] }}
-            </router-link>
-          </td>
-          <td>
-            <router-link :to="{name: 'TeamShow', params: { id: item['@id'] }}">
-              <span class="fa fa-search" aria-hidden="true" />
-              <span class="sr-only">Show</span>
-            </router-link>
-          </td>
-          <td>
-            <router-link :to="{name: 'TeamUpdate', params: { id: item['@id'] }}">
+            <router-link :to="{name: 'MediaObjectUpdate', params: { id: item['@id'] }}">
 
               <font-awesome-icon icon="edit" aria-hidden="true" />
               <span class="sr-only">Edit</span>
@@ -68,7 +50,7 @@
     </table>
   </div>
 
-  <router-link :to="{ name: 'TeamCreate' }" class="btn btn-primary">Create</router-link>
+  <router-link :to="{ name: 'MediaObjectCreate' }" class="btn btn-primary">Create</router-link>
 </div>
 </template>
 
@@ -77,14 +59,20 @@ import {
   mapActions,
   mapGetters
 } from 'vuex'
+import { ENTRYPOINT } from '../../config/entrypoint';
 
 export default {
+  data () {
+    return {
+      entrypoint: ENTRYPOINT
+    }
+  },
   computed: mapGetters({
-    deletedItem: 'team/del/deleted',
-    error: 'team/list/error',
-    items: 'team/list/items',
-    isLoading: 'team/list/isLoading',
-    view: 'team/list/view'
+    deletedItem: 'mediaobject/del/deleted',
+    error: 'mediaobject/list/error',
+    items: 'mediaobject/list/items',
+    isLoading: 'mediaobject/list/isLoading',
+    view: 'mediaobject/list/view'
   }),
 
   created() {
@@ -92,7 +80,7 @@ export default {
   },
 
   methods: mapActions({
-    getPage: 'team/list/default'
+    getPage: 'mediaobject/list/default'
   })
 }
 </script>
