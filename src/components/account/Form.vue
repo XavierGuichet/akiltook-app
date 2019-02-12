@@ -2,6 +2,21 @@
   <form @submit.prevent="handleSubmit(item)">
     <div class="form-group">
       <label
+        for="account_username"
+        class="form-control-label">Nom d'utilisateur</label>
+      <input
+        id="account_username"
+        v-model="item.username"
+        :class="['form-control', isInvalid('username') ? 'is-invalid' : '']"
+        type="text"
+        placeholder=""
+        @input="handleUpdateField('username', $event.target.value)">
+      <div
+        v-if="isInvalid('username')"
+        class="invalid-feedback">{{ violations.username }}</div>
+    </div>
+    <div class="form-group">
+      <label
         for="account_email"
         class="form-control-label">email</label>
       <input
@@ -23,7 +38,7 @@
         id="account_password"
         v-model="item.password"
         :class="['form-control', isInvalid('password') ? 'is-invalid' : '']"
-        type="hidden"
+        type="password"
         placeholder=""
         @input="handleUpdateField('password', $event.target.value)">
       <div

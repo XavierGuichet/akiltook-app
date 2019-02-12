@@ -54,7 +54,7 @@ export default {
         return
       }
 
-      this.$router.push({ name: 'AccountUpdate', params: { id: created['@id'] } })
+      this.$router.push({ name: 'AuthLogin' })
     }
   },
 
