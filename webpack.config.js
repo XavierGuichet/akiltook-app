@@ -10,7 +10,14 @@ module.exports = {
     filename: 'build.js'
   },
   plugins: [
-    new Dotenv()
+    new Dotenv(),
+    new webpack.ProvidePlugin({
+      Vue: ['vue/dist/vue.esm.js', 'default'],
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      $: 'jquery',
+      moment: 'moment',
+    }),
   ],
   module: {
     rules: [
