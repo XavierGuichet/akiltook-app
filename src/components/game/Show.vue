@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>Show {{ item && item['@id'] }}</h1>
+    <h1>Détails {{ item && item['@id'] }}</h1>
 
     <div
       v-if="isLoading"
       class="alert alert-info"
-      role="status">Loading...</div>
+      role="status">Chargement...</div>
     <div
       v-if="error"
       class="alert alert-danger"
@@ -34,7 +34,7 @@
         </thead>
         <tbody>
           <tr>
-            <td>atHome</td>
+            <td>À domicile</td>
             <td>{{ item['atHome'] }}</td>
           </tr>
           <tr>
@@ -42,19 +42,19 @@
             <td>{{ item['location'] }}</td>
           </tr>
           <tr>
-            <td>Team1</td>
+            <td>Equipe</td>
             <td>{{ item['Team1'] }}</td>
           </tr>
           <tr>
-            <td>Team2</td>
+            <td>Equipe</td>
             <td>{{ item['Team2'] }}</td>
           </tr>
           <tr>
-            <td>startAt</td>
+            <td>Début</td>
             <td>{{ item['startAt'] }}</td>
           </tr>
           <tr>
-            <td>tooks</td>
+            <td>Tooks</td>
             <td>{{ item['tooks'] }}</td>
           </tr>
         </tbody>
@@ -64,10 +64,10 @@
     <router-link
       v-if="item"
       :to="{ name: 'GameList' }"
-      class="btn btn-default">Back to list</router-link>
+      class="btn btn-default">Retour à la liste</router-link>
     <button
       class="btn btn-danger"
-      @click="deleteItem(item)">Delete</button>
+      @click="deleteItem(item)">Supprimer</button>
   </div>
 </template>
 

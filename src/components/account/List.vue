@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>Account List</h1>
+    <h1>Utilisateurs</h1>
 
     <div
       v-if="isLoading"
-      class="alert alert-info">Loading...</div>
+      class="alert alert-info">Chargement ...</div>
     <div
       v-if="deletedItem"
-      class="alert alert-success">{{ deletedItem['@id'] }} deleted.</div>
+      class="alert alert-success">{{ deletedItem['@id'] }} supprimé.</div>
     <div
       v-if="error"
       class="alert alert-danger">{{ error }}</div>
@@ -88,7 +88,7 @@
 
     <router-link
       :to="{ name: 'AccountCreate' }"
-      class="btn btn-primary">Create</router-link>
+      class="btn btn-primary float-right">Nouveau</router-link>
   </div>
 </template>
 

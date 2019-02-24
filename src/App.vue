@@ -5,12 +5,12 @@
       <ul class="nav nav-justified" v-if="$auth.ready()">
         <li class="active" v-if="!$auth.check()"><router-link :to="{ name: 'AccountCreate' }" class="btn btn-outline-light">Inscription</router-link></li>
         <li class="active" v-if="!$auth.check()"><router-link :to="{ name: 'AuthLogin' }" class="btn btn-outline-light">Connexion</router-link></li>
-        <li class="active" v-if="$auth.check('ROLE_ADMIN')"><router-link :to="{ name: 'AccountList' }" class="btn btn-outline-secondary">Accounts</router-link></li>
+        <li class="active" v-if="$auth.check('ROLE_ADMIN')"><router-link :to="{ name: 'AccountList' }" class="btn btn-outline-secondary">Utilisateurs</router-link></li>
         <li class="active" v-if="$auth.check('ROLE_ADMIN')"><router-link :to="{ name: 'ClubList' }" class="btn btn-outline-secondary">Clubs</router-link></li>
-        <li class="active" v-if="$auth.check('ROLE_ADMIN')"><router-link :to="{ name: 'GameList' }" class="btn btn-outline-secondary">Games</router-link></li>
+        <li class="active" v-if="$auth.check('ROLE_ADMIN')"><router-link :to="{ name: 'GameList' }" class="btn btn-outline-secondary">Matchs</router-link></li>
         <li class="active" v-if="$auth.check('ROLE_ADMIN')"><router-link :to="{ name: 'MediaObjectList' }" class="btn btn-outline-secondary">Media</router-link></li>
         <li class="active" v-if="$auth.check('ROLE_ADMIN')"><router-link :to="{ name: 'TookList' }" class="btn btn-outline-secondary">Tooks</router-link></li>
-        <li class="active" v-if="$auth.check('ROLE_ADMIN')"><router-link :to="{ name: 'TeamList' }" class="btn btn-outline-secondary">Teams</router-link></li>
+        <li class="active" v-if="$auth.check('ROLE_ADMIN')"><router-link :to="{ name: 'TeamList' }" class="btn btn-outline-secondary">Equipes</router-link></li>
         <li class="active" v-if="$auth.check('ROLE_USER')"><router-link :to="{ name: 'GameUserList' }" class="btn btn-outline-light">Match à venir</router-link></li>
         <li class="active" v-if="$auth.check()"><a href="#" @click="$auth.logout()" class="btn btn-outline-light">Déconnexion</a></li>
       </ul>

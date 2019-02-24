@@ -1,8 +1,8 @@
 <template>
 <div>
-  <h1>Game List</h1>
+  <h1>Liste des matchs</h1>
 
-  <div v-if="isLoading" class="alert alert-info">Loading...</div>
+  <div v-if="isLoading" class="alert alert-info">Chargement...</div>
   <div v-if="deletedItem" class="alert alert-success">{{ deletedItem['@id'] }} deleted.</div>
   <div v-if="error" class="alert alert-danger">{{ error }}</div>
 
@@ -22,12 +22,12 @@
       <thead>
         <tr>
           <th>Id</th>
-          <th>startAt</th>
-          <th>Team1</th>
-          <th>Team2</th>
-          <th>atHome</th>
-          <th>location</th>
-          <th>tooks</th>
+          <th>Debut</th>
+          <th>Equipe </th>
+          <th>Equipe </th>
+          <th>À domicile</th>
+          <th>Lieu</th>
+          <th>Tooks</th>
           <th colspan="2" />
         </tr>
       </thead>

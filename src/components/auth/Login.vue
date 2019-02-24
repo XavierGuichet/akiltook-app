@@ -4,7 +4,7 @@
     <div class="col-sm-6 mx-auto">
       <h1>Connexion</h1>
 
-      <div v-if="isLoading" class="alert alert-info" role="status">Loading...</div>
+      <div v-if="isLoading" class="alert alert-info" role="status">Chargement...</div>
       <div v-if="error" class="alert alert-danger" role="alert">
         <span class="fa fa-exclamation-triangle" aria-hidden="true" /> {{ error }}
       </div>

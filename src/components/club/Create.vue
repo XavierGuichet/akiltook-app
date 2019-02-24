@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>New Club</h1>
+    <h1>Nouveau Club</h1>
 
     <div
       v-if="isLoading"
       class="alert alert-info"
-      role="status">Loading...</div>
+      role="status">Chargement...</div>
     <div
       v-if="error"
       class="alert alert-danger"
@@ -23,7 +23,7 @@
 
     <router-link
       :to="{ name: 'ClubList' }"
-      class="btn btn-default">Back to list</router-link>
+      class="btn btn-default">Retour à la liste</router-link>
   </div>
 </template>
 

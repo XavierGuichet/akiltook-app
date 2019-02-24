@@ -3,7 +3,7 @@
     <div class="form-group">
       <label
         for="club_Name"
-        class="form-control-label">Name</label>
+        class="form-control-label">Nom</label>
       <input
         id="club_Name"
         v-model="item.Name"
@@ -38,7 +38,7 @@
     </div>
     <button
       type="submit"
-      class="btn btn-success">Submit</button>
+      class="btn btn-success">Enregistrer</button>
   </form>
 </template>
 

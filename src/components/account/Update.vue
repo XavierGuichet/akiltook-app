@@ -1,19 +1,19 @@
 <template>
   <div>
-    <h1>Edit {{ item && item['@id'] }}</h1>
+    <h1>Modifier {{ item && item['@id'] }}</h1>
 
     <div
       v-if="created"
       class="alert alert-success"
-      role="status">{{ created['@id'] }} created.</div>
+      role="status">{{ created['@id'] }} crée.</div>
     <div
       v-if="updated"
       class="alert alert-success"
-      role="status">{{ updated['@id'] }} updated.</div>
+      role="status">{{ updated['@id'] }} modifié.</div>
     <div
       v-if="isLoading || deleteLoading"
       class="alert alert-info"
-      role="status">Loading...</div>
+      role="status">Chargement...</div>
     <div
       v-if="error"
       class="alert alert-danger"
@@ -42,10 +42,10 @@
     <router-link
       v-if="item"
       :to="{ name: 'AccountList' }"
-      class="btn btn-default">Back to list</router-link>
+      class="btn btn-default">Retour à la liste</router-link>
     <button
-      class="btn btn-danger"
-      @click="del">Delete</button>
+      class="btn btn-danger float-right mr-2"
+      @click="del">Supprimer</button>
   </div>
 </template>
 

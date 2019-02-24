@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div v-if="isLoading" class="alert alert-info">Loading...</div>
+  <div v-if="isLoading" class="alert alert-info">Chargement...</div>
   <div v-if="deletedItem" class="alert alert-success">{{ deletedItem['@id'] }} deleted.</div>
   <div v-if="error" class="alert alert-danger">{{ error }}</div>
 

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>New Account</h1>
+    <h1>Nouvel utilisateurs</h1>
 
     <div
       v-if="isLoading"
       class="alert alert-info"
-      role="status">Loading...</div>
+      role="status">Chargement...</div>
     <div
       v-if="error"
       class="alert alert-danger"

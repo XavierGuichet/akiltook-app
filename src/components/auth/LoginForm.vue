@@ -3,7 +3,7 @@
     <div class="form-group">
       <label
         for="account_email"
-        class="form-control-label">email</label>
+        class="form-control-label">Email</label>
       <input
         id="account_email"
         v-model="item.email"
@@ -18,7 +18,7 @@
     <div class="form-group">
       <label
         for="account_password"
-        class="form-control-label">mot de passe</label>
+        class="form-control-label">Mot de passe</label>
       <input
         id="account_password"
         v-model="item.password"
@@ -33,7 +33,7 @@
 
     <button
       type="submit"
-      class="btn btn-block btn-secondary">Submit</button>
+      class="btn btn-block btn-secondary">Connexion</button>
   </form>
 </template>
 

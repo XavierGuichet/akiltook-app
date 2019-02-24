@@ -49,7 +49,7 @@
     <div v-if="isInvalid('title')" class="invalid-feedback">{{ violations.title }}</div>
   </div>
 
-  <button type="submit" class="btn btn-success">Submit</button>
+  <button type="submit" class="btn btn-success">Enregistrer</button>
 </form>
 </template>
 

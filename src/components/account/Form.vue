@@ -48,7 +48,7 @@
 
     <button
       type="submit"
-      class="btn btn-success">Submit</button>
+      class="btn btn-success float-right">Enregistrer</button>
   </form>
 </template>
 

@@ -26,7 +26,7 @@
     </div>
     <button
       type="submit"
-      class="btn btn-success">Submit</button>
+      class="btn btn-success">Enregistrer</button>
   </form>
 </template>
 

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>Show {{ item && item['@id'] }}</h1>
+    <h1>Détails {{ item && item['@id'] }}</h1>
 
     <div
       v-if="isLoading"
       class="alert alert-info"
-      role="status">Loading...</div>
+      role="status">Chargement...</div>
     <div
       v-if="error"
       class="alert alert-danger"
@@ -52,10 +52,10 @@
     <router-link
       v-if="item"
       :to="{ name: 'TeamList' }"
-      class="btn btn-default">Back to list</router-link>
+      class="btn btn-default">Retour à la liste</router-link>
     <button
       class="btn btn-danger"
-      @click="deleteItem(item)">Delete</button>
+      @click="deleteItem(item)">Supprimer</button>
   </div>
 </template>
 
