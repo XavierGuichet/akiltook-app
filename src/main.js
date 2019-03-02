@@ -20,8 +20,8 @@ jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
     next: 'fas fa-chevron-right',
     today: 'fas fa-calendar-check',
     clear: 'far fa-trash-alt',
-    close: 'far fa-times-circle'
-  }
+    close: 'far fa-times-circle',
+  },
 });
 
 import {
@@ -50,7 +50,7 @@ import {
 } from './config/entrypoint';
 Vue.http.options.root = ENTRYPOINT;
 Vue.use(require('@websanova/vue-auth'), {
-  // auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
+  // Auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
   auth: require('./auth-driver/bearer-body.js'),
   http: require('@websanova/vue-auth/drivers/http/vue-resource.1.x.js'),
   router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
@@ -61,37 +61,35 @@ Vue.use(require('@websanova/vue-auth'), {
   loginData: {
     url: ENTRYPOINT + 'login_check',
     redirect: '/match',
-    fetchUser: true
+    fetchUser: true,
   },
   refreshData: {
     url: '/login/token-refresh',
     method: 'POST',
-    enabled: false
+    enabled: false,
   },
   fetchData: {
     url: ENTRYPOINT + 'accounts/me',
-    enabled: true
+    enabled: true,
   },
   facebookData: {
-    // where api log user with FB
     url: '/login/check-facebook"',
     method: 'POST',
-    // redirect after api response
-    redirect: '/'
+    redirect: '/match',
   },
   facebookOauth2Data: {
     clientId: FACEBOOK_ID,
     params: {
       redirect_uri: function() {
         return this.options.getUrl() + '/login/oauth/facebook';
-      }
+      },
     },
-    scope: 'public_profile, email'
+    scope: 'public_profile, email',
   },
   googleData: {
     url: '/login/check-google',
     method: 'POST',
-    redirect: '/'
+    redirect: '/match',
   },
   googleOauth2Data: {
     url: 'https://accounts.google.com/o/oauth2/auth',
@@ -100,9 +98,9 @@ Vue.use(require('@websanova/vue-auth'), {
         return this.options.getUrl() + '/login/oauth/google';
       },
       client_id: GOOGLE_ID,
-      scope: 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
-    }
-  }
+      scope: 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read',
+    },
+  },
 });
 
 
@@ -123,13 +121,13 @@ export const store = new Vuex.Store({
     mediaobject,
     game,
     team,
-    took
-  }
+    took,
+  },
 });
 
 new Vue({
   el: '#app',
   store,
   router,
-  render: h => h(App)
+  render: h => h(App),
 });
