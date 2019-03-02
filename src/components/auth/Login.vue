@@ -1,18 +1,46 @@
 <template>
-<div>
-  <div class="row">
-    <div class="col-sm-6 mx-auto">
-      <h1>Connexion</h1>
-
-      <div v-if="isLoading" class="alert alert-info" role="status">Chargement...</div>
-      <div v-if="error" class="alert alert-danger" role="alert">
-        <span class="fa fa-exclamation-triangle" aria-hidden="true" /> {{ error }}
+  <div>
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 class="text-center">Connexion</h1>
       </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 mx-auto">
+        <div class="row mb-3">
+          <div class="col-sm-6">
+            <button type="button" class="btn btn-block mr-2 bg-fb text-light" v-on:click="fb_register()">Facebook</button>
+          </div>
+          <div class="col-sm-6">
+            <button type="button" class="btn btn-block bg-google text-light d-none" v-on:click="google_register()">Google</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="text-center">Par mail</h2>
+            <div v-if="isLoading" class="alert alert-info" role="status">Chargement...</div>
+            <div v-if="error" class="alert alert-danger" role="alert">
+              <span class="fa fa-exclamation-triangle" aria-hidden="true" /> {{ error }}
+            </div>
+            <div class="clearfix mb-2">
+              <div v-if="isLoading" class="alert alert-info" role="status">Chargement...</div>
+              <div v-if="error" class="alert alert-danger" role="alert">
+                <span class="fa fa-exclamation-triangle" aria-hidden="true" /> {{ error }}
+              </div>
+              <div v-if="requestErrors" class="alert alert-danger" role="alert">
+                <span class="fa fa-exclamation-triangle" aria-hidden="true" />
+                <span v-for="requestError in requestErrors">
+                  {{ requestError.msg }}
+                </span>
+              </div>
 
-      <LoginForm :handle-submit="onSendForm" :handle-update-field="updateField" :values="item" :errors="violations" />
+              <LoginForm :handle-submit="onSendForm" :handle-update-field="updateField" :values="item" :errors="violations" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -33,7 +61,8 @@ export default {
 
   data() {
     return {
-      item: {}
+      item: {},
+      requestErrors: null
     }
   },
 
@@ -73,6 +102,7 @@ export default {
           this.loading = false
         },
         error: function(res) {
+          res = res.body
           let message = 'Une erreur inattendue est survenue.' // 'default'
           if (res.message) {
             if (res.message == "Bad credentials") {
@@ -86,10 +116,18 @@ export default {
           if (res.errors) {
             this.requestErrors = res.errors
           }
-          this.showErrors = true
           this.loading = false
         }
       })
+    },
+
+    fb_register() {
+      this.loading = true
+      this.$auth.oauth2({
+        provider: 'facebook',
+        rememberMe: true
+      });
+      this.loading = false
     },
 
     updateField(field, value) {

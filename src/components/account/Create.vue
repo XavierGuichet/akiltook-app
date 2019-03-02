@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>Nouvel utilisateurs</h1>
+    <div class="row">
+      <div class="col-sm-6 mx-auto">
+    <h1>Nouvel utilisateur</h1>
 
     <div
       v-if="isLoading"
@@ -20,6 +22,8 @@
       :handle-update-field="updateField"
       :values="item"
       :errors="violations" />
+  </div>
+  </div>
   </div>
 </template>
 

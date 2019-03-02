@@ -3,7 +3,7 @@
     <nav class="navbar navbar-dark bg-primary">
       <router-link :to="{ name: 'GameUserList' }" class="navbar-brand"><img src="./assets/bottle.svg" height="42px" />Akiltook</router-link>
       <ul class="nav nav-justified" v-if="$auth.ready()">
-        <li class="active" v-if="!$auth.check()"><router-link :to="{ name: 'AccountCreate' }" class="btn btn-outline-light">Inscription</router-link></li>
+        <li class="active" v-if="!$auth.check()"><router-link :to="{ name: 'AuthRegister' }" class="btn btn-outline-light">Inscription</router-link></li>
         <li class="active" v-if="!$auth.check()"><router-link :to="{ name: 'AuthLogin' }" class="btn btn-outline-light">Connexion</router-link></li>
         <li class="active" v-if="$auth.check('ROLE_ADMIN')"><router-link :to="{ name: 'AccountList' }" class="btn btn-outline-secondary">Utilisateurs</router-link></li>
         <li class="active" v-if="$auth.check('ROLE_ADMIN')"><router-link :to="{ name: 'ClubList' }" class="btn btn-outline-secondary">Clubs</router-link></li>

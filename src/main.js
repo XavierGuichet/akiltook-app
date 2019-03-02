@@ -11,22 +11,28 @@ import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
 Vue.use(datePicker);
 
 jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
-    icons: {
-      time: 'far fa-clock',
-      date: 'far fa-calendar',
-      up: 'fas fa-arrow-up',
-      down: 'fas fa-arrow-down',
-      previous: 'fas fa-chevron-left',
-      next: 'fas fa-chevron-right',
-      today: 'fas fa-calendar-check',
-      clear: 'far fa-trash-alt',
-      close: 'far fa-times-circle'
-    }
+  icons: {
+    time: 'far fa-clock',
+    date: 'far fa-calendar',
+    up: 'fas fa-arrow-up',
+    down: 'fas fa-arrow-down',
+    previous: 'fas fa-chevron-left',
+    next: 'fas fa-chevron-right',
+    today: 'fas fa-calendar-check',
+    clear: 'far fa-trash-alt',
+    close: 'far fa-times-circle'
+  }
 });
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import {
+  library
+} from '@fortawesome/fontawesome-svg-core'
+import {
+  faEdit
+} from '@fortawesome/free-solid-svg-icons'
+import {
+  FontAwesomeIcon
+} from '@fortawesome/vue-fontawesome'
 library.add(faEdit)
 
 Vue.use(Vuex);
@@ -39,31 +45,64 @@ import filter from './filters/'
 import router from './router'
 Vue.router = router
 
-import { ENTRYPOINT } from './config/entrypoint';
+import {
+  ENTRYPOINT, FACEBOOK_ID, GOOGLE_ID
+} from './config/entrypoint';
 Vue.http.options.root = ENTRYPOINT;
 Vue.use(require('@websanova/vue-auth'), {
-    // auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
-    auth: require('./auth-driver/bearer-body.js'),
-    http: require('@websanova/vue-auth/drivers/http/vue-resource.1.x.js'),
-    router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
-    rolesVar: 'roles',
-    parseUserData: function (data) {
-      return data || {}
+  // auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
+  auth: require('./auth-driver/bearer-body.js'),
+  http: require('@websanova/vue-auth/drivers/http/vue-resource.1.x.js'),
+  router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
+  rolesVar: 'roles',
+  parseUserData: function(data) {
+    return data || {}
+  },
+  loginData: {
+    url: ENTRYPOINT + 'login_check',
+    redirect: '/match',
+    fetchUser: true
+  },
+  refreshData: {
+    url: '/login/token-refresh',
+    method: 'POST',
+    enabled: false
+  },
+  fetchData: {
+    url: ENTRYPOINT + 'accounts/me',
+    enabled: true
+  },
+  facebookData: {
+    // where api log user with FB
+    url: '/login/check-facebook"',
+    method: 'POST',
+    // redirect after api response
+    redirect: '/'
+  },
+  facebookOauth2Data: {
+    clientId: FACEBOOK_ID,
+    params: {
+      redirect_uri: function() {
+        return this.options.getUrl() + '/login/oauth/facebook';
+      }
     },
-    loginData: {
-      url: ENTRYPOINT + 'login_check',
-      redirect: '/match',
-      fetchUser: true
-    },
-    refreshData: {
-      url: '/login/token-refresh',
-      method: 'POST',
-      enabled: false
-    },
-    fetchData: {
-      url: ENTRYPOINT + 'accounts/me',
-      enabled: true
-    },
+    scope: 'public_profile, email'
+  },
+  googleData: {
+    url: '/login/check-google',
+    method: 'POST',
+    redirect: '/'
+  },
+  googleOauth2Data: {
+    url: 'https://accounts.google.com/o/oauth2/auth',
+    params: {
+      redirect_uri: function() {
+        return this.options.getUrl() + '/login/oauth/google';
+      },
+      client_id: GOOGLE_ID,
+      scope: 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
+    }
+  }
 });
 
 
