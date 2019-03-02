@@ -52,7 +52,7 @@ export default {
         error: function (res) {
           this.loading = false
         },
-        redirect: {path: '/'},
+        redirect: {path: '/match'},
       });
     }
   },
