@@ -22,8 +22,8 @@
       :errors="violations" />
 
     <router-link
-      :to="{ name: 'TookList' }"
-      class="btn btn-default">Retour à la liste</router-link>
+      :to="{ name: 'GameUserList' }"
+      class="btn btn-default">Retour aux matchs</router-link>
   </div>
 </template>
 
@@ -58,7 +58,7 @@ export default {
         return
       }
 
-      this.$router.push({ name: 'TookUpdate', params: { id: created['@id'] } })
+      this.$router.push({ name: 'GameUserList' })
     }
   },
 
