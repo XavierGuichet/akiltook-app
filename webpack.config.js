@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 const Dotenv = require('dotenv-webpack');
+var OfflinePlugin = require('offline-plugin');
 var WebpackPwaManifest = require('webpack-pwa-manifest')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -41,6 +42,7 @@ module.exports = {
         },
       ],
     }),
+    new OfflinePlugin(),
   ],
   module: {
     rules: [

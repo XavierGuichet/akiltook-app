@@ -8,6 +8,7 @@ import App from './App.vue';
 
 import datePicker from 'vue-bootstrap-datetimepicker';
 import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
+require('offline-plugin/runtime').install();
 Vue.use(datePicker);
 
 jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
