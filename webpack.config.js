@@ -1,13 +1,15 @@
 var path = require('path')
 var webpack = require('webpack')
 const Dotenv = require('dotenv-webpack');
+var WebpackPwaManifest = require('webpack-pwa-manifest')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
-    filename: 'build.js'
+    publicPath: '/',
+    filename: 'build.js',
   },
   plugins: [
     new Dotenv(),
@@ -18,14 +20,36 @@ module.exports = {
       $: 'jquery',
       moment: 'moment',
     }),
+    new HtmlWebpackPlugin({
+      title: 'Akiltook',
+      meta: {
+        viewport: 'width=device-width, initial-scale=1.0',
+      },
+      filename: path.resolve(__dirname, 'dist/index.html'),
+      template: path.resolve(__dirname, 'src/template.html'),
+    }),
+    new WebpackPwaManifest({
+      name: 'Akiltook',
+      short_name: 'Akiltook',
+      description: 'Organize your sport team celebration',
+      background_color: '#ff9234',
+      crossorigin: 'use-credentials', // Can be null, use-credentials or anonymous
+      icons: [
+        {
+          src: path.resolve('src/assets/akiltook-logo.png'),
+          sizes: [96, 128, 192, 256, 384, 512],
+        },
+      ],
+    }),
   ],
   module: {
     rules: [
+      { test: /\.html$/, loader: 'html-loader' },
       {
         test: /\.css$/,
         use: [
           'vue-style-loader',
-          'css-loader'
+          'css-loader',
         ],
       },
       {
@@ -33,7 +57,7 @@ module.exports = {
         use: [
           'vue-style-loader',
           'css-loader',
-          'sass-loader'
+          'sass-loader',
         ],
       },
       {
@@ -41,7 +65,7 @@ module.exports = {
         use: [
           'vue-style-loader',
           'css-loader',
-          'sass-loader?indentedSyntax'
+          'sass-loader?indentedSyntax',
         ],
       },
       {
@@ -55,46 +79,47 @@ module.exports = {
             'scss': [
               'vue-style-loader',
               'css-loader',
-              'sass-loader'
+              'sass-loader',
             ],
             'sass': [
               'vue-style-loader',
               'css-loader',
-              'sass-loader?indentedSyntax'
-            ]
-          }
-          // other vue-loader options go here
-        }
+              'sass-loader?indentedSyntax',
+            ],
+          },
+        },
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]'
-        }
-      }
-    ]
+          name: '[name].[ext]?[hash]',
+        },
+      },
+    ],
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
     },
-    extensions: ['*', '.js', '.vue', '.json']
+    extensions: ['*', '.js', '.vue', '.json'],
   },
   devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
   },
   performance: {
-    hints: false
+    hints: false,
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -103,17 +128,17 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
-      }
+        NODE_ENV: '"production"',
+      },
     }),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true,
       compress: {
-        warnings: false
-      }
+        warnings: false,
+      },
     }),
     new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
+      minimize: true,
+    }),
   ])
 }
