@@ -15,55 +15,49 @@
     &nbsp;
   </span>
 
-  <div class="card text-center" style="width: 18rem; margin: 0 auto 1rem;" v-for="item in items" :key="item['@id']">
+  <div class="card text-center" style="width: 22rem; margin: 0 auto 1rem;" v-for="item in items" :key="item['@id']">
     <div class="card-header">
       {{ item['startAt'] | formatDate }}
+      <span v-if="item['atHome']" class="text-muted">
+        - Domicile
+      </span>
+      <span v-else class="text-muted">
+        - Extérieur
+      </span>
     </div>
-    <div class="card-body">
-      <h5 class="card-title">
-        <div class="row">
-          <div class="col-6">
-            <img v-bind:src="entrypoint + 'media/' + mediaobject(club(team(item['Team1']).club).Logo).contentUrl" class="img-fluid" /><br/>
-            {{ club(team(item['Team1']).club).Name }} {{ team(item['Team1']).Name }}
+    <div class="card-body py-2 px-0 d-flex">
+      <h5 class="card-title p-0 col" style="flex-basis: 120px">
+        <div class="d-flex flex-column">
+          <div class="col px-0">
+            <img v-bind:src="entrypoint + 'media/' + mediaobject(club(team(item['Team1']).club).Logo).contentUrl" class="img-fluid w-48" />
+            <img v-bind:src="entrypoint + 'media/' + mediaobject(club(team(item['Team2']).club).Logo).contentUrl" class="img-fluid w-48" />
           </div>
-          <div class="col-6">
-            <img v-bind:src="entrypoint + 'media/' + mediaobject(club(team(item['Team2']).club).Logo).contentUrl" class="img-fluid" /><br/>
-            {{ club(team(item['Team2']).club).Name }} {{ team(item['Team2']).Name }}
-          </div>
+          <h6 class="col card-subtitle mb-2">
+            {{ club(team(item['Team1']).club).Name }} <span class="text-muted">({{ team(item['Team1']).Name }})</span>
+            <br />
+            {{ club(team(item['Team2']).club).Name }} <span class="text-muted">({{ team(item['Team2']).Name }})</span>
+          </h6>
         </div>
       </h5>
-      <h6 class="card-subtitle mb-2 text-muted">
-        <span v-if="item['atHome']">
-          Domicile
-        </span>
-        <span v-else>
-          Extérieur
-        </span>
-      </h6>
-      <table class="table">
-        <tr>
-          <th>Qui</th>
-          <th>Quoi</th>
-          <th>Plus</th>
-        </tr>
-        <tr v-for="took_id in item['tooks']" :key="took_id">
-          <td>
-            <span v-if="took(took_id).DoneBy">
-              {{ took(took_id).DoneBy }}
-            </span>
-            <span v-else>
-              {{ account(took(took_id).CreatedBy).username }}
-            </span>
-          <td>{{ took(took_id).Title }}</td>
-          <td>{{ took(took_id).Description }}</td>
-        </tr>
-        <tr v-if="item['tooks'].length == 0">
-          <td colspan="3">
+      <div class="col px-0" style="flex-basis: 240px">
+          <ul class="list-group">
+          <li v-for="took_id in item['tooks']" :key="took_id" class="list-group-item">
+              <span v-if="took(took_id).DoneBy">
+                {{ took(took_id).DoneBy }}
+              </span>
+              <span v-else>
+                {{ account(took(took_id).CreatedBy).username }}
+              </span> :
+            {{ took(took_id).Title }}
+            <span class="text-muted" v-if="took(took_id).Description">({{ took(took_id).Description }})</span>
+          </li>
+          <li  v-if="item['tooks'].length == 0" class="list-group-item disabled">
             Une triste journée s'annonce. Personne ne s'est porté volontaire.
-          </td>
-        </tr>
-      </table>
-      <router-link :to="{ name: 'TookCreate' }" class="card-link btn btn-secondary btn-sm">Ajouter une took</router-link>
+          </li>
+        </ul>
+
+        <router-link :to="{ name: 'TookCreate' }" class="card-link btn btn-secondary btn-sm card-action-took">Ajouter une took</router-link>
+      </div>
     </div>
   </div>
 </div>
@@ -74,10 +68,12 @@ import {
   mapActions,
   mapGetters
 } from 'vuex'
-import { ENTRYPOINT } from '../../config/entrypoint';
+import {
+  ENTRYPOINT
+} from '../../config/entrypoint';
 
 export default {
-  data () {
+  data() {
     return {
       entrypoint: ENTRYPOINT
     }
