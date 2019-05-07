@@ -11,6 +11,9 @@ import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
 require('offline-plugin/runtime').install();
 Vue.use(datePicker);
 
+import Navbar from 'bootstrap-vue/es/components/navbar'
+Vue.use(Navbar)
+
 jQuery.extend(true, jQuery.fn.datetimepicker.defaults, {
   icons: {
     time: 'far fa-clock',

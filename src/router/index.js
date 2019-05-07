@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import authRoutes from './auth';
 import accountRoutes from './account';
 import clubRoutes from './club';
+import cmsRoutes from './cms';
 import gameRoutes from './game';
 import mediaObjectRoutes from './mediaObject';
 import tookRoutes from './took';
@@ -14,6 +15,7 @@ const router = new VueRouter({
       ...accountRoutes,
       ...authRoutes,
       ...clubRoutes,
+      ...cmsRoutes,
       ...gameRoutes,
       ...mediaObjectRoutes,
       ...tookRoutes,

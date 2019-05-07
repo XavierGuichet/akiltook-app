@@ -11,7 +11,12 @@ $font-family-serif: 'Lato', sans-serif;
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 
-
+html, body {
+  height: 100%;
+}
+.main-container {
+  padding-top: 56px !important;
+}
 h1 {
   color: map-get($theme-colors, 'primary');
   text-align: center;

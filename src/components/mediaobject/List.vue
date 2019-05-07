@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1>Liste des MediaObjects</h1>
+  <h1>Images, Vidéos, ...</h1>
 
   <div v-if="isLoading" class="alert alert-info">Chargement...</div>
   <div v-if="deletedItem" class="alert alert-success">{{ deletedItem['@id'] }} deleted.</div>
