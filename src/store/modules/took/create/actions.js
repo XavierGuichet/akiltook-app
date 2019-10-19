@@ -6,7 +6,7 @@ export const create = ({ commit }, values) => {
   commit(types.TOOK_CREATE_SET_ERROR, '')
   commit(types.TOOK_CREATE_TOGGLE_LOADING)
 
-  return fetch('/tooks', { method: 'POST', body: JSON.stringify(values) })
+  return fetch('/consummables', { method: 'POST', body: JSON.stringify(values) })
     .then((response) => {
       commit(types.TOOK_CREATE_TOGGLE_LOADING)
 

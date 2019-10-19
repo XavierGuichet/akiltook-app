@@ -58,7 +58,7 @@ export default {
         return
       }
 
-      this.$router.push({ name: 'GameUpdate', params: { id: created['@id'] } })
+      this.$router.push({ name: 'GameList' })
     }
   },
 

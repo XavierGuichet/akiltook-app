@@ -36,7 +36,7 @@
           </td>
           <td>
             <router-link v-if="item" :to="{name: 'TeamShow', params: { id: item['@id'] }}">
-              <img v-bind:src="entrypoint + 'media/' + mediaobject(club(item['club']).Logo).contentUrl" class="img-fluid img-list" />
+              <img v-bind:src="entrypoint + 'media/' + mediaobject(club(item['SportClub']).Logo).contentUrl" class="img-fluid img-list" />
               {{ club(item['club']).Name }}
             </router-link>
           </td>

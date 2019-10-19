@@ -25,7 +25,6 @@
           <th>Debut</th>
           <th>Equipe </th>
           <th>Equipe </th>
-          <th>À domicile</th>
           <th>Lieu</th>
           <th>Tooks</th>
           <th colspan="2" />
@@ -40,22 +39,17 @@
           </td>
           <td>
             <router-link v-if="item" :to="{name: 'GameShow', params: { id: item['@id'] }}">
-              {{ item['startAt'] | formatDate }}
+              {{ item['startDate'] | formatDate }}
             </router-link>
           </td>
           <td>
             <router-link v-if="item" :to="{name: 'GameShow', params: { id: item['@id'] }}">
-              {{ club(team(item['Team1']).club).Name }} {{ team(item['Team1']).Name }}
+              {{ club(team(item['HomeTeam']).SportClub).Name }} {{ team(item['HomeTeam']).Name }}
             </router-link>
           </td>
           <td>
             <router-link v-if="item" :to="{name: 'GameShow', params: { id: item['@id'] }}">
-              {{ club(team(item['Team2']).club).Name }} {{ team(item['Team2']).Name }}
-            </router-link>
-          </td>
-          <td>
-            <router-link v-if="item" :to="{name: 'GameShow', params: { id: item['@id'] }}">
-              {{ item['atHome'] }}
+              {{ club(team(item['AwayTeam']).SportClub).Name }} {{ team(item['AwayTeam']).Name }}
             </router-link>
           </td>
           <td>

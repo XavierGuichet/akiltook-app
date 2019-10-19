@@ -2,24 +2,24 @@
   <form @submit.prevent="handleSubmit(item)">
     <div class="form-group">
       <label
-        for="took_Event"
+        for="took_SportEvent"
         class="form-control-label">Match</label>
         <select
-          id="took_Event"
-          v-model="item.Event"
-          :class="['form-control', isInvalid('Event') ? 'is-invalid' : '']"
-          @change="handleUpdateField('Event', $event.target.value)">
+          id="took_SportEvent"
+          v-model="item.SportEvent"
+          :class="['form-control', isInvalid('SportEvent') ? 'is-invalid' : '']"
+          @change="handleUpdateField('SportEvent', $event.target.value)">
         >
           <option v-for="item in games"
           :key="item['@id']"
           :value="item['@id']"
           >
-          {{ item['startAt'] | formatDate }} {{ club(team(item['Team1']).club).Name }} {{ team(item['Team1']).Name }} - {{ club(team(item['Team2']).club).Name }} {{ team(item['Team2']).Name }}
+          {{ item['startAt'] | formatDate }} {{ club(team(item['HomeTeam']).SportClub).Name }} {{ team(item['HomeTeam']).Name }} - {{ club(team(item['AwayTeam']).SportClub).Name }} {{ team(item['AwayTeam']).Name }}
           </option>
         </select>
       <div
-        v-if="isInvalid('Event')"
-        class="invalid-feedback">{{ violations.Event }}</div>
+        v-if="isInvalid('SportEvent')"
+        class="invalid-feedback">{{ violations.SportEvent }}</div>
     </div>
     <div class="form-group">
       <label

@@ -1,10 +1,5 @@
 <template>
 <form @submit.prevent="handleSubmit(item)">
-  <div class="form-check">
-    <input id="game_atHome" v-model="item.atHome" :class="['form-check-input', isInvalid('atHome') ? 'is-invalid' : '']" type="checkbox" placeholder="" @input="handleUpdateField('atHome', $event.target.value)">
-    <label for="game_atHome" class="form-check-label">A domicile</label>
-    <div v-if="isInvalid('atHome')" class="invalid-feedback">{{ violations.atHome }}</div>
-  </div>
   <div class="form-group">
     <label for="game_location" class="form-control-label">Location</label>
     <input id="game_location" v-model="item.location" :class="['form-control', isInvalid('location') ? 'is-invalid' : '']" type="text" placeholder="" @input="handleUpdateField('location', $event.target.value)">
@@ -12,32 +7,32 @@
   </div>
   <div class="row">
   <div class="form-group col-6">
-    <label for="game_Team1" class="form-control-label">Equipe</label>
-    <select id="game_Team1" v-model="item.Team1" :class="['form-control', isInvalid('Team1') ? 'is-invalid' : '']" @change="handleUpdateField('Team1', $event.target.value)">
+    <label for="game_HomeTeam" class="form-control-label">Equipe Dom.</label>
+    <select id="game_HomeTeam" v-model="item.HomeTeam" :class="['form-control', isInvalid('HomeTeam') ? 'is-invalid' : '']" @change="handleUpdateField('HomeTeam', $event.target.value)">
       >
       <option v-for="item in teams" :key="item['@id']" :value="item['@id']">
-        {{ club(item['club']).Name }} - {{ item['Name'] }}
+        {{ club(item['SportClub']).Name }} - {{ item['Name'] }}
       </option>
     </select>
-    <div v-if="isInvalid('Team1')" class="invalid-feedback">{{ violations.Team1 }}</div>
+    <div v-if="isInvalid('HomeTeam')" class="invalid-feedback">{{ violations.HomeTeam }}</div>
   </div>
   <div class="form-group col-6">
-    <label for="game_Team2" class="form-control-label">Equipe</label>
-    <select id="game_Team2" v-model="item.Team2" :class="['form-control', isInvalid('Team2') ? 'is-invalid' : '']" @change="handleUpdateField('Team2', $event.target.value)">
+    <label for="game_AwayTeam" class="form-control-label">Equipe Ext.</label>
+    <select id="game_AwayTeam" v-model="item.AwayTeam" :class="['form-control', isInvalid('AwayTeam') ? 'is-invalid' : '']" @change="handleUpdateField('AwayTeam', $event.target.value)">
       >
       <option v-for="item in teams" :key="item['@id']" :value="item['@id']">
-        {{ club(item['club']).Name }} - {{ item['Name'] }}
+        {{ club(item['SportClub']).Name }} - {{ item['Name'] }}
       </option>
     </select>
-    <div v-if="isInvalid('Team2')" class="invalid-feedback">{{ violations.Team2 }}</div>
+    <div v-if="isInvalid('AwayTeam')" class="invalid-feedback">{{ violations.AwayTeam }}</div>
   </div>
   </div>
   <div class="form-group">
-    <label for="game_startAt" class="form-control-label">startAt</label>
-    <input id="game_startAt" v-model="item.startAt" :class="['form-control', isInvalid('startAt') ? 'is-invalid' : '']" type="hidden" placeholder="" @input="handleUpdateField('startAt', $event.target.value)">
-    <div v-if="isInvalid('startAt')" class="invalid-feedback">{{ violations.startAt }}</div>
+    <label for="game_startDate" class="form-control-label">startDate</label>
+    <input id="game_startDate" v-model="item.startDate" :class="['form-control', isInvalid('startDate') ? 'is-invalid' : '']" type="hidden" placeholder="" @input="handleUpdateField('startDate', $event.target.value)">
+    <div v-if="isInvalid('startDate')" class="invalid-feedback">{{ violations.startDate }}</div>
     <date-picker
-      v-model="item.startAt"
+      v-model="item.startDate"
       :config="DatePickerOptions"
       @dp-change="handleUpdateDatePicker"
       ></date-picker>
@@ -126,7 +121,6 @@ export default {
     },
 
     handleUpdateDatePicker() {
-      console.log("hello")
       console.log(this.DatePickerDatetime)
     }
   },

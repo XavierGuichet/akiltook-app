@@ -1,7 +1,7 @@
 import fetch from '../../../../utils/fetch'
 import * as types from './mutation_types'
 
-const getItems = ({ commit }, page = '/tooks') => {
+const getItems = ({ commit }, page = '/consummables') => {
   commit(types.TOGGLE_LOADING)
 
   fetch(page)

@@ -21,9 +21,9 @@
         class="form-control-label">Club</label>
         <select
           id="team_club"
-          v-model="item.club"
-          :class="['form-control', isInvalid('club') ? 'is-invalid' : '']"
-          @change="handleUpdateField('club', $event.target.value)">
+          v-model="item.SportClub"
+          :class="['form-control', isInvalid('SportClub') ? 'is-invalid' : '']"
+          @change="handleUpdateField('SportClub', $event.target.value)">
         >
           <option v-for="item in clubs"
           :key="item['@id']"

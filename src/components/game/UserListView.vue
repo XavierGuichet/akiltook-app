@@ -1,47 +1,30 @@
 <template>
-<div>
+<div class="pt-2">
   <div v-if="isLoading" class="alert alert-info">Chargement...</div>
   <div v-if="deletedItem" class="alert alert-success">{{ deletedItem['@id'] }} deleted.</div>
   <div v-if="error" class="alert alert-danger">{{ error }}</div>
 
-  <span v-if="view">
-    <button :disabled="!view['hydra:previous']" type="button" class="btn btn-basic btn-sm" @click="getPage(view['hydra:first'])">First</button>
-    &nbsp;
-    <button :disabled="!view['hydra:previous']" type="button" class="btn btn-basic btn-sm" @click="getPage(view['hydra:previous'])">Previous</button>
-    &nbsp;
-    <button :disabled="!view['hydra:next']" type="button" class="btn btn-basic btn-sm" @click="getPage(view['hydra:next'])">Next</button>
-    &nbsp;
-    <button :disabled="!view['hydra:last']" type="button" class="btn btn-basic btn-sm" @click="getPage(view['hydra:last'])">Last</button>
-    &nbsp;
-  </span>
-
   <div class="card text-center" style="width: 22rem; margin: 0 auto 1rem;" v-for="item in items" :key="item['@id']">
     <div class="card-header">
-      {{ item['startAt'] | formatDate }}
-      <span v-if="item['atHome']" class="text-muted">
-        - Domicile
-      </span>
-      <span v-else class="text-muted">
-        - Extérieur
-      </span>
+      {{ item['startDate'] | formatDate }}
     </div>
     <div class="card-body py-2 px-0 d-flex">
       <h5 class="card-title p-0 col" style="flex-basis: 120px">
         <div class="d-flex flex-column">
           <div class="col px-0">
-            <img v-bind:src="entrypoint + 'media/' + mediaobject(club(team(item['Team1']).club).Logo).contentUrl" class="img-fluid w-48" />
-            <img v-bind:src="entrypoint + 'media/' + mediaobject(club(team(item['Team2']).club).Logo).contentUrl" class="img-fluid w-48" />
+            <img v-bind:src="entrypoint + 'media/' + mediaobject(club(team(item['HomeTeam']).SportClub).Logo).contentUrl" class="img-fluid w-48" />
+            <img v-bind:src="entrypoint + 'media/' + mediaobject(club(team(item['AwayTeam']).SportClub).Logo).contentUrl" class="img-fluid w-48" />
           </div>
           <h6 class="col card-subtitle mb-2">
-            {{ club(team(item['Team1']).club).Name }} <span class="text-muted">({{ team(item['Team1']).Name }})</span>
+            {{ club(team(item['HomeTeam']).SportClub).Name }} <span class="text-muted">({{ team(item['Team1']).Name }})</span>
             <br />
-            {{ club(team(item['Team2']).club).Name }} <span class="text-muted">({{ team(item['Team2']).Name }})</span>
+            {{ club(team(item['AwayTeam']).SportClub).Name }} <span class="text-muted">({{ team(item['Team2']).Name }})</span>
           </h6>
         </div>
       </h5>
       <div class="col px-0" style="flex-basis: 240px">
           <ul class="list-group">
-          <li v-for="took_id in item['tooks']" :key="took_id" class="list-group-item">
+          <!-- <li v-for="took_id in item['tooks']" :key="took_id" class="list-group-item">
               <span v-if="took(took_id).DoneBy">
                 {{ took(took_id).DoneBy }}
               </span>
@@ -53,7 +36,7 @@
           </li>
           <li  v-if="item['tooks'].length == 0" class="list-group-item disabled">
             Une triste journée s'annonce. Personne ne s'est porté volontaire.
-          </li>
+          </li> -->
         </ul>
 
         <router-link :to="{ name: 'TookCreate' }" class="card-link btn btn-secondary btn-sm card-action-took">Ajouter une took</router-link>

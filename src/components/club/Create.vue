@@ -58,7 +58,7 @@ export default {
         return
       }
 
-      this.$router.push({ name: 'ClubUpdate', params: { id: created['@id'] } })
+      this.$router.push({ name: 'ClubList' })
     }
   },
 

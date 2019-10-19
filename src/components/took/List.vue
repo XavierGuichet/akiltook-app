@@ -22,7 +22,7 @@
       <thead>
         <tr>
           <th>Id</th>
-          <th>Event</th>
+          <th>Match</th>
           <th>Title</th>
           <th>Description</th>
           <th colspan="2" />
@@ -37,7 +37,7 @@
           </td>
           <td>
             <router-link v-if="item" :to="{name: 'TookShow', params: { id: item['@id'] }}">
-              {{ item['Event'] }}
+              {{ item['SportEvent'] }}
             </router-link>
           </td>
           <td>

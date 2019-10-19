@@ -6,7 +6,7 @@ export const create = ({ commit }, values) => {
   commit(types.GAME_CREATE_SET_ERROR, '')
   commit(types.GAME_CREATE_TOGGLE_LOADING)
 
-  return fetch('/games', { method: 'POST', body: JSON.stringify(values) })
+  return fetch('/sport_events', { method: 'POST', body: JSON.stringify(values) })
     .then((response) => {
       commit(types.GAME_CREATE_TOGGLE_LOADING)
 

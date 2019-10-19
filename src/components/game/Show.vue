@@ -34,10 +34,6 @@
         </thead>
         <tbody>
           <tr>
-            <td>À domicile</td>
-            <td>{{ item['atHome'] }}</td>
-          </tr>
-          <tr>
             <td>location</td>
             <td>{{ item['location'] }}</td>
           </tr>
