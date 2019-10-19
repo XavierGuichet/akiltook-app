@@ -30,7 +30,7 @@
         <tr v-for="item in items" :key="item['@id']">
           <td>
             <router-link v-if="item" :to="{name: 'MediaObjectShow', params: { id: item['@id'] }}">
-              {{ item['@id'] }}
+              {{ item['@id'] | idNumber }}
             </router-link>
           </td>
           <td>

@@ -29,7 +29,7 @@
           :key="item['@id']"
           :value="item['@id']"
           >
-          {{ item['@id'] }}
+          {{ item['@id'] | idNumber }}
           </option>
         </select>
       <div

@@ -56,7 +56,7 @@
               <router-link
                 v-if="item"
                 :to="{name: 'AccountShow', params: { id: item['@id'] }}">
-                {{ item['@id'] }}
+                {{ item['@id'] | idNumber }}
               </router-link>
             </td>
             <td>
