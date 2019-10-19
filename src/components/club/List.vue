@@ -41,7 +41,7 @@
           </td>
           <td>
             <router-link v-if="item" :to="{name: 'ClubShow', params: { id: item['@id'] }}">
-              {{ item['teams'] }}
+              {{ item['SportsTeams'] }}
             </router-link>
           </td>
           <td>
