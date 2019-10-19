@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="pt-3">
   <h1>Liste des Clubs</h1>
 
   <div v-if="isLoading" class="alert alert-info">Chargement...</div>
@@ -7,6 +7,7 @@
   <div v-if="error" class="alert alert-danger">{{ error }}</div>
 
   <span v-if="view">
+    <span> {{ view['hydra:totalItems'] }}</span>
     <button :disabled="!view['hydra:previous']" type="button" class="btn btn-basic btn-sm" @click="getPage(view['hydra:first'])">First</button>
     &nbsp;
     <button :disabled="!view['hydra:previous']" type="button" class="btn btn-basic btn-sm" @click="getPage(view['hydra:previous'])">Previous</button>

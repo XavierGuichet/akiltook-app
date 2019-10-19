@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="pt-3">
   <h1>Images, Vidéos, ...</h1>
 
   <div v-if="isLoading" class="alert alert-info">Chargement...</div>

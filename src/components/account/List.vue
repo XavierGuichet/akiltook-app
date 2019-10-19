@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pt-3">
     <h1>Utilisateurs</h1>
 
     <div
