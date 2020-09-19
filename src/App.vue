@@ -15,7 +15,8 @@
         <b-nav-item :to="{ name: 'MediaObjectList' }" v-if="$auth.check('ROLE_ADMIN')">Media</b-nav-item>
         <b-nav-item :to="{ name: 'TookList' }" v-if="$auth.check('ROLE_ADMIN')">Tooks</b-nav-item>
         <b-nav-item :to="{ name: 'TeamList' }" v-if="$auth.check('ROLE_ADMIN')">Equipes</b-nav-item>
-        <b-nav-item :to="{ name: 'GameUserList' }" v-if="$auth.check('ROLE_USER')">Match à venir</b-nav-item>
+        <b-nav-item :to="{ name: 'ProfileUpdate' }" v-if="$auth.check('ROLE_ADMIN')">Mon compte</b-nav-item>
+        <b-nav-item :to="{ name: 'GameUserList' }" v-if="($auth.check('ROLE_USER') || $auth.check('ROLE_ADMIN'))">Match à venir</b-nav-item>
         <b-nav-item @click="$auth.logout()" v-if="$auth.check()">Déconnexion</b-nav-item>
       </b-navbar-nav>
     </b-collapse>

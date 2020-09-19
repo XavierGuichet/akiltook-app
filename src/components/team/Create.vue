@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Nouvel équipe</h1>
+    <h1>Nouvelle équipe</h1>
 
     <div
       v-if="isLoading"

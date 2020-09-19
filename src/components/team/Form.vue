@@ -17,6 +17,23 @@
     </div>
     <div class="form-group">
       <label
+        for="team_Name"
+        class="form-control-label">Équipe féminine</label>
+        <div class="custom-control custom-switch">
+        <input type="checkbox"
+               class="custom-control-input"
+               id="team_women"
+               v-model="item.Women"
+               value=1
+               @change="handleUpdateField('Women', $event.target.value)">
+        <label class="custom-control-label" for="team_women">Oui</label>
+      </div>
+      <div
+        v-if="isInvalid('Name')"
+        class="invalid-feedback">{{ violations.Name }}</div>
+    </div>
+    <div class="form-group">
+      <label
         for="team_club"
         class="form-control-label">Club</label>
         <select
